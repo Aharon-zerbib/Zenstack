@@ -204,7 +204,7 @@ export default function Home() {
                     <>
                       <span className="text-sm font-mono text-blue-500">01 / LARAVEL + INERTIA + TYPESCRIPT + MYSQL</span>
                       <h3 className="text-4xl font-light text-white">CRM pour les Micro-entreprise</h3>
-                      <button className="flex items-center gap-2 text-sm font-bold uppercase border-b border-blue-500 pb-2">Development ( Explorer ) <ArrowRight size={16} /></button>
+                      <button className="flex items-center gap-2 text-sm font-bold uppercase border-b border-blue-500 pb-2"> En face de Développement   </button>
                     </>
                   ) : (
                     <>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 import { ArrowRight, Mail, Github, Linkedin } from "lucide-react";
 
@@ -80,10 +80,63 @@ function Logo(props: React.SVGProps<SVGSVGElement>) {
 
 export default function Home() {
   const [isNinaOpen, setIsNinaOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const hasPushedHistory = useRef(false);
+  const closedFromPop = useRef(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
+    updateIsMobile();
+    mediaQuery.addEventListener("change", updateIsMobile);
+    return () => mediaQuery.removeEventListener("change", updateIsMobile);
+  }, []);
+
+  useEffect(() => {
+    if (!isNinaOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isNinaOpen]);
+
+  useEffect(() => {
+    if (isNinaOpen) {
+      if (!hasPushedHistory.current) {
+        window.history.pushState({ modal: "nina" }, "");
+        hasPushedHistory.current = true;
+      }
+      const handlePop = () => {
+        if (hasPushedHistory.current) {
+          closedFromPop.current = true;
+          setIsNinaOpen(false);
+        }
+      };
+      window.addEventListener("popstate", handlePop);
+      return () => window.removeEventListener("popstate", handlePop);
+    }
+
+    if (hasPushedHistory.current) {
+      if (!closedFromPop.current) {
+        window.history.back();
+      }
+      hasPushedHistory.current = false;
+      closedFromPop.current = false;
+    }
+  }, [isNinaOpen]);
+
+  const handleNinaOpen = () => {
+    if (isMobile) {
+      setIsNinaOpen(true);
+      return;
+    }
+    window.open("https://nina-carducci-rosy.vercel.app", "_blank", "noopener,noreferrer");
+  };
   return (
-      <div className="relative min-h-screen bg-[#030303] text-white selection:bg-blue-500/30 font-sans overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#030303] text-white selection:bg-blue-500/30 font-sans overflow-x-hidden">
       <MouseGlow />
-        <div className="fixed inset-0 z-99 pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div className="fixed inset-0 z-99 pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
       {/* NAV */}
       <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 backdrop-blur-md border-b border-white/5">
@@ -113,13 +166,37 @@ export default function Home() {
         </section>
 
         {isNinaOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center">
-            <div className="absolute inset-0 bg-black/70" onClick={() => setIsNinaOpen(false)} />
-            <div role="dialog" aria-modal="true" className="relative w-[95%] md:w-[90%] lg:w-[80%] h-[85vh] bg-black rounded-xl overflow-hidden border border-white/10 shadow-lg">
-              <button onClick={() => setIsNinaOpen(false)} aria-label="Fermer" className="absolute top-3 right-3 z-50 bg-white/5 hover:bg-white/10 rounded-full p-2">
-                ✕
-              </button>
-              <iframe src="https://nina-carducci-rosy.vercel.app" title="Nina - Preview" className="w-full h-full border-0" />
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4 md:px-0">
+            <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setIsNinaOpen(false)} />
+            <div
+              role="dialog"
+              aria-modal="true"
+              className="relative w-full max-w-5xl h-full md:h-[85vh] bg-[#050505] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col"
+            >
+              <div className="flex items-center justify-between gap-3 px-4 md:px-6 py-3 bg-white/5 backdrop-blur-sm border-b border-white/10">
+                <div className="flex flex-col leading-tight">
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-blue-400">Preview mobile-friendly</span>
+                  <span className="text-base font-medium">Nina Carducci</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <a
+                    href="https://nina-carducci-rosy.vercel.app"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hidden md:inline-flex text-xs font-semibold uppercase tracking-wide bg-white text-black px-3 py-2 rounded-full hover:bg-blue-100 transition-colors"
+                  >
+                    Ouvrir dans un onglet
+                  </a>
+                  <button
+                    onClick={() => setIsNinaOpen(false)}
+                    aria-label="Fermer la previsualisation"
+                    className="inline-flex items-center justify-center text-xs font-semibold uppercase tracking-wide bg-white/10 hover:bg-white/20 px-3 py-2 rounded-full transition-colors"
+                  >
+                    Retour
+                  </button>
+                </div>
+              </div>
+              <iframe src="https://nina-carducci-rosy.vercel.app" title="Nina - Preview" className="flex-1 w-full border-0" />
             </div>
           </div>
         )}
@@ -157,7 +234,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16">
               <div>
                 <h3 className="text-xl font-light mb-8 text-white/80 flex items-center gap-3">
-                  <div className="h-px w-8 bg-blue-500" /> Learning & Backend
+                  <div className="h-px w-8 bg-blue-500" /> Learning 
                 </h3>
                 <div className="flex flex-wrap gap-4">
                   <SkillIcon alt="Angular" src="https://github.com/tandpfun/skill-icons/blob/main/icons/Angular-Dark.svg" href="https://angular.dev/overview" />
@@ -210,7 +287,7 @@ export default function Home() {
                     <>
                       <span className="text-sm font-mono text-blue-500">02 / REACT </span>
                       <h3 className="text-4xl font-light text-white">Nina Carducci</h3>
-                      <button onClick={() => setIsNinaOpen(true)} className="inline-flex items-center gap-2 text-sm font-bold uppercase border-b border-blue-500 pb-2">
+                      <button onClick={handleNinaOpen} className="inline-flex items-center gap-2 text-sm font-bold uppercase border-b border-blue-500 pb-2">
                         Explorer <ArrowRight size={16} />
                       </button>
                     </>

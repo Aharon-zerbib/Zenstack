@@ -142,7 +142,7 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 backdrop-blur-md border-b border-white/5">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-white rounded-lg"><Logo className="h-6 w-6 text-black" /></div>
-          <span className="text-xl font-medium tracking-tighter">Zenstak</span>
+          <span className="text-xl font-medium tracking-tighter">Zenstack</span>
         </div>
         <div className="hidden md:flex gap-8 text-sm font-light text-white/60">
           <a href="#skills" className="hover:text-white transition-colors">Stack</a>
@@ -339,7 +339,7 @@ export default function Home() {
           </div>
 
           <p className="mt-24 text-white/20 text-sm tracking-widest uppercase">
-            © 2026 ZENSTAK 
+            © 2026 ZENSTACK 
           </p>
         </footer>
       </main>

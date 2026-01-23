@@ -66,18 +66,6 @@ const SectionTitle = ({ children, subtitle }: { children: React.ReactNode; subti
   </div>
 );
 
-function Logo(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} {...props}>
-      <path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z" />
-      <path d="M7 21h10" /><path d="M19.5 12 22 6" />
-      <path d="M16.25 3c.27.1.8.53.75 1.36-.06.83-.93 1.2-1 2.02-.05.78.34 1.24.73 1.62" />
-      <path d="M11.25 3c.27.1.8.53.74 1.36-.05.83-.93 1.2-.98 2.02-.06.78.33 1.24.72 1.62" />
-      <path d="M6.25 3c.27.1.8.53.75 1.36-.06.83-.93 1.2-1 2.02-.05.78.34 1.24.74 1.62" />
-    </svg>
-  );
-}
-
 export default function Home() {
   const [isNinaOpen, setIsNinaOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -100,6 +88,27 @@ export default function Home() {
       document.body.style.overflow = previousOverflow;
     };
   }, [isNinaOpen]);
+
+  // Masquer la nav lors du scroll vers le bas, réafficher au scroll vers le haut
+  const [navHidden, setNavHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+    const handleScroll = () => {
+      const current = window.scrollY;
+      // Ignore small scrolls
+      if (Math.abs(current - lastScrollY.current) < 10) return;
+      if (current > lastScrollY.current && current > 50) {
+        setNavHidden(true);
+      } else {
+        setNavHidden(false);
+      }
+      lastScrollY.current = current;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (isNinaOpen) {
@@ -139,10 +148,10 @@ export default function Home() {
       <div className="fixed inset-0 z-99 pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
       {/* NAV */}
-      <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 backdrop-blur-md border-b border-white/5">
+      <nav className={`fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 backdrop-blur-md border-b border-white/5 transition-transform duration-1500 ${navHidden ? '-translate-y-full' : 'translate-y-0'}`}>
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-white rounded-lg"><Logo className="h-6 w-6 text-black" /></div>
-          <span className="text-xl font-medium tracking-tighter">Zenstack</span>
+          <img src="/image.png" alt="Zenstack logo" className="h-15 w-15 md:h-15 md:w-15 object-contain" />
+          <span className="text-2xl font-medium tracking-tighter">Zenstack</span>
         </div>
         <div className="hidden md:flex gap-8 text-sm font-light text-white/60">
           <a href="#skills" className="hover:text-white transition-colors">Stack</a>

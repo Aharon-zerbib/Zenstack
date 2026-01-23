@@ -290,13 +290,17 @@ export default function Home() {
                     <>
                       <span className="text-sm font-mono text-blue-500">01 / LARAVEL + INERTIA + TYPESCRIPT + MYSQL</span>
                       <h3 className="text-4xl font-light text-white">CRM pour les Micro-entreprise</h3>
-                      <button className="flex items-center gap-2 text-sm font-bold uppercase border-b border-blue-500 pb-2"> En face de Développement   </button>
+                      <button className="flex items-center gap-2 text-sm font-bold uppercase border-b border-blue-500 pb-2">
+                        <span className="inline-block h-2 w-2 rounded-full bg-red-500" aria-hidden="true" />
+                        En face de Développement
+                      </button>
                     </>
                   ) : (
                     <>
                       <span className="text-sm font-mono text-blue-500">02 / REACT </span>
                       <h3 className="text-4xl font-light text-white">Nina Carducci</h3>
                       <button onClick={handleNinaOpen} className="inline-flex items-center gap-2 text-sm font-bold uppercase border-b border-blue-500 pb-2">
+                        <span className="inline-block h-2 w-2 rounded-full bg-green-500" aria-hidden="true" />
                         Explorer <ArrowRight size={16} />
                       </button>
                     </>

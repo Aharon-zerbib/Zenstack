@@ -150,7 +150,7 @@ export default function Home() {
       {/* NAV */}
       <nav className={`fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 backdrop-blur-md border-b border-white/5 transition-transform duration-1500 ${navHidden ? '-translate-y-full' : 'translate-y-0'}`}>
         <div className="flex items-center gap-3">
-          <img src="/image.png" alt="Zenstack logo" className="h-15 w-15 md:h-15 md:w-15 object-contain" />
+          <img src="/LT.png" alt="Zenstack logo" className="h-15 w-15 md:h-15 md:w-15 object-contain" />
           <span className="text-2xl font-medium tracking-tighter">Zenstack</span>
         </div>
         <div className="hidden md:flex gap-8 text-sm font-light text-white/60">

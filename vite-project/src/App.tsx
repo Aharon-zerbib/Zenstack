@@ -184,7 +184,7 @@ export default function Home() {
             >
               <div className="flex items-center justify-between gap-3 px-4 md:px-6 py-3 bg-white/5 backdrop-blur-sm border-b border-white/10">
                 <div className="flex flex-col leading-tight">
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-blue-400">Preview mobile-friendly</span>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-blue-400">Preview mobile</span>
                   <span className="text-base font-medium">Nina Carducci</span>
                 </div>
                 <div className="flex items-center gap-2">

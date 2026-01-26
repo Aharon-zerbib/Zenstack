@@ -323,7 +323,7 @@ export default function Home() {
 */}
         {/* PROJETS */}
         <section id="projets" className="py-32 px-6 md:px-24">
-          <SectionTitle subtitle="Portfolio">Sélection de travaux</SectionTitle>
+          <SectionTitle subtitle="Portfolio">Réalisations récentes</SectionTitle>
           <div className="space-y-32">
             {[1, 2].map((item) => (
               <motion.div key={item} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="group grid md:grid-cols-12 gap-8 items-center">

@@ -35,7 +35,7 @@ const MouseGlow = () => {
 };
 
 // --- COMPOSANT : SKILL ICON ---
-const SkillIcon = ({ src, alt, href }: { src: string; alt: string; href: string }) => (
+/*const SkillIcon = ({ src, alt, href }: { src: string; alt: string; href: string }) => (
   <motion.a
     href={href}
     target="_blank"
@@ -43,7 +43,7 @@ const SkillIcon = ({ src, alt, href }: { src: string; alt: string; href: string 
     whileHover={{ y: -5, scale: 1.1 }}
     className="relative group p-3 rounded-xl border border-white/5 bg-white/[0.03] backdrop-blur-sm hover:border-blue-500/50 transition-colors"
   >
-    {/* Using raw <img> for third-party icons (allowed) */}
+ 
     <img
       src={src.replace("github.com/tandpfun/skill-icons/blob/main/icons", "raw.githubusercontent.com/tandpfun/skill-icons/main/icons")}
       alt={alt}
@@ -51,6 +51,7 @@ const SkillIcon = ({ src, alt, href }: { src: string; alt: string; href: string 
     />
   </motion.a>
 );
+*/
 
 // --- COMPONENTS UI ---
 const SectionTitle = ({ children, subtitle }: { children: React.ReactNode; subtitle: string }) => (
@@ -148,30 +149,66 @@ export default function Home() {
       <div className="fixed inset-0 z-99 pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
       {/* NAV */}
-      <nav className={`fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 backdrop-blur-md border-b border-white/5 transition-transform duration-1500 ${ (isNinaOpen && isMobile) || navHidden ? '-translate-y-full' : 'translate-y-0' }`}>
+      <nav className={`fixed top-0 w-full z-50 flex justify-between items-center px-4 py-3 md:px-8 md:py-6 backdrop-blur-md border-b border-white/5 transition-transform duration-1500 ${ (isNinaOpen && isMobile) || navHidden ? '-translate-y-full' : 'translate-y-0' }`}>
         <div className="flex items-center gap-3">
-          <img src="/LT.png" alt="Zenstack logo" className="h-15 w-15 md:h-15 md:w-15 object-contain" />
-          <span className="text-2xl font-medium tracking-tighter">Zenstack</span>
+          <img src="/LT.png" alt="Zenstack logo" className="h-13 w-13 md:h-15 md:w-15 object-contain" />
+          <span className="text-lg md:text-2xl font-medium tracking-tighter">Zenstack</span>
         </div>
         <div className="hidden md:flex gap-8 text-sm font-light text-white/60">
-          <a href="#skills" className="hover:text-white transition-colors">Stack</a>
-          {/*<a href="#services" className="hover:text-white transition-colors">Services</a>*/}
+          <a href="#services" className="hover:text-white transition-colors">Services</a>
           <a href="#projets" className="hover:text-white transition-colors">Projets</a>
         </div>
       </nav>
 
       <main className="relative z-10">
         {/* HERO */}
-        <section className="relative h-screen flex flex-col justify-center px-6 md:px-24">
+        <section className="relative h-screen flex flex-col justify-center px-6 md:px-24 pt-16 md:pt-0">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-5xl">
             <h1 className="text-6xl md:text-[120px] font-light leading-[0.9] tracking-tighter mb-8">
-              Développeur <br /><span className="text-blue-500 italic"> Full-stack.</span>
+              Zenstack 
+              <br />
+              <span className="text-blue-500 italic">Solutions digitales sur mesure</span>
             </h1>
             <p className="text-lg md:text-2xl text-white/50 max-w-2xl font-light leading-relaxed">
-              
-              Je conçois des applications modernes, rapides et intuitives, pensées pour offrir une expérience utilisateur fluide .
+              Je conçois et développe des applications web et mobiles performantes, sécurisées
+              et esthétiques. Du concept à la mise en production, j'accompagne les
+              entreprises et indépendants pour transformer une idée en produit concret.
             </p>
+            <div className="mt-8 flex items-center gap-4">
+              <a href="mailto:contact@zenstack.fr" className="inline-flex items-center gap-3 bg-blue-500 hover:bg-blue-600 text-black font-semibold px-6 py-3 rounded-full">
+                Me contacter
+                <ArrowRight size={16} />
+              </a>
+              <a href="#projets" className="inline-flex items-center gap-3 text-sm font-medium text-white/70 hover:text-white">
+                Voir mes projets
+              </a>
+            </div>
           </motion.div>
+        </section>
+
+        {/* SERVICES */}
+        <section id="services" className="py-20 px-6 md:px-24 bg-white/1 border-t border-white/5">
+          <SectionTitle subtitle="Services">Ce que je propose</SectionTitle>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-xl">
+              <h4 className="text-lg font-semibold text-white">Développement Web & Mobile</h4>
+              <p className="mt-3 text-white/60 text-sm">Je conçois des applications web et mobiles sur mesure (React, Next.js). J'assure
+              l'architecture, les APIs, l'intégration continue et le déploiement pour un produit
+              rapide, testable et facile à maintenir.</p>
+            </div>
+            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-xl">
+              <h4 className="text-lg font-semibold text-white">E‑commerce & Backends</h4>
+              <p className="mt-3 text-white/60 text-sm">Je développe des boutiques optimisées pour la conversion : intégration sécurisée des
+              paiements, gestion de catalogue, automatisations et backends scalables pour accompagner
+              la croissance de ton activité.</p>
+            </div>
+            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-xl">
+              <h4 className="text-lg font-semibold text-white">Design & UX</h4>
+              <p className="mt-3 text-white/60 text-sm">Approche UX pragmatique : prototypes interactifs sur Figma, tests utilisateurs rapides
+              et mise en place d'un design system léger pour assurer cohérence, accessibilité et
+              vitesse de développement.</p>
+            </div>
+          </div>
         </section>
 
         {isNinaOpen && (
@@ -210,12 +247,12 @@ export default function Home() {
           </div>
         )}
 
-        {/* SKILLS SECTION (Nouveau) */}
+        {/*
         <section id="skills" className="py-32 px-6 md:px-24 bg-white/1 border-y border-white/5 backdrop-blur-sm">
           <SectionTitle subtitle="Technos">Maîtrise & Apprentissage</SectionTitle>
           
           <div className="space-y-16">
-            {/* Mastered */}
+          
             <div>
               <h3 className="text-xl font-light mb-8 text-white/80 flex items-center gap-3">
                 <div className="h-px w-8 bg-blue-500" /> Skills
@@ -239,7 +276,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Learning & Backend */}
+         
             <div className="grid md:grid-cols-2 gap-16">
               <div>
                 <h3 className="text-xl font-light mb-8 text-white/80 flex items-center gap-3">
@@ -265,7 +302,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-
+*/}
         {/* PROJETS */}
         <section id="projets" className="py-32 px-6 md:px-24">
           <SectionTitle subtitle="Portfolio">Sélection de travaux</SectionTitle>
@@ -323,9 +360,9 @@ export default function Home() {
 
           <div className="flex flex-wrap justify-center gap-8 md:gap-12">
             {/* Email */}
-            <a href="mailto:contact @zenstack.fr" className="flex items-center gap-3 text-xl md:text-2xl font-light hover:text-blue-500 transition-colors group">
+            <a href="mailto:contact@zenstack.fr" className="flex items-center gap-3 text-xl md:text-2xl font-light hover:text-blue-500 transition-colors group">
               <Mail className="group-hover:scale-110 transition-transform" /> 
-              contact @zenstack.fr 
+              contact@zenstack.fr
             </a>
 
             {/* LinkedIn */}
@@ -350,6 +387,8 @@ export default function Home() {
               GitHub
             </a>
           </div>
+
+          <p className="mt-6 text-white/60 text-sm">Fondé et développé par Aharon Zerbib — Développeur indépendant.</p>
 
           <p className="mt-24 text-white/20 text-sm tracking-widest uppercase">
             © 2026 ZENSTACK 

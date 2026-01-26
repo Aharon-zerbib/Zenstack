@@ -190,24 +190,42 @@ export default function Home() {
         <section id="services" className="py-20 px-6 md:px-24 bg-white/1 border-t border-white/5">
           <SectionTitle subtitle="Services">Ce que je propose</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.08 }}
+              className="p-6 bg-white/[0.02] border border-white/5 rounded-xl"
+            >
               <h4 className="text-lg font-semibold text-white">Développement Web & Mobile</h4>
               <p className="mt-3 text-white/60 text-sm">Je conçois des applications web et mobiles sur mesure (React, Next.js). J'assure
               l'architecture, les APIs, l'intégration continue et le déploiement pour un produit
               rapide, testable et facile à maintenir.</p>
-            </div>
-            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-xl">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.16 }}
+              className="p-6 bg-white/[0.02] border border-white/5 rounded-xl"
+            >
               <h4 className="text-lg font-semibold text-white">E‑commerce & Backends</h4>
               <p className="mt-3 text-white/60 text-sm">Je développe des boutiques optimisées pour la conversion : intégration sécurisée des
               paiements, gestion de catalogue, automatisations et backends scalables pour accompagner
               la croissance de ton activité.</p>
-            </div>
-            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-xl">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.24 }}
+              className="p-6 bg-white/[0.02] border border-white/5 rounded-xl"
+            >
               <h4 className="text-lg font-semibold text-white">Design & UX</h4>
               <p className="mt-3 text-white/60 text-sm">Approche UX pragmatique : prototypes interactifs sur Figma, tests utilisateurs rapides
               et mise en place d'un design system léger pour assurer cohérence, accessibilité et
               vitesse de développement.</p>
-            </div>
+            </motion.div>
           </div>
         </section>
 

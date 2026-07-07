@@ -5,6 +5,8 @@ import { motion, useSpring, useMotionValue } from "framer-motion";
 import { ArrowRight, Mail, Github, Linkedin } from "lucide-react";
 
 import crmPng from "./img/image.png";
+import pomodoroPng from "./img/pomodoro.png";
+import cafePng from "./img/cafe.png";
 import ninaPng from "./img/Nina.png";
 
 // --- COMPOSANT : SUIVI DE SOURIS (GLOW) ---
@@ -320,12 +322,11 @@ export default function Home() {
             </div>
           </div>
         </section>
-*/}
         {/* PROJETS */}
         <section id="projets" className="py-32 px-6 md:px-24">
           <SectionTitle subtitle="Portfolio">Réalisations récentes</SectionTitle>
           <div className="space-y-32">
-            {[1, 2].map((item) => (
+            {[1, 2, 3].map((item) => (
               <motion.div key={item} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="group grid md:grid-cols-12 gap-8 items-center">
                 <div className="md:col-span-7 overflow-hidden rounded-2xl aspect-video bg-zinc-800 border border-white/5">
                   {item === 1 ? (
@@ -333,6 +334,11 @@ export default function Home() {
                       <img src={crmPng} alt="E-commerce de Luxe" className="object-cover w-full h-full" />
                     </div>
                   ) : item === 2 ? (
+                    <div className="w-full h-full relative group-hover:scale-105 transition-transform duration-700 flex">
+                      <img src={pomodoroPng} alt="Pomodoro" className="object-cover w-1/2 h-full border-r border-white/10" />
+                      <img src={cafePng} alt="Café" className="object-cover w-1/2 h-full" />
+                    </div>
+                  ) : item === 3 ? (
                     <div className="w-full h-full relative group-hover:scale-105 transition-transform duration-700">
                       <img src={ninaPng} alt="Nina - Projet" className="object-cover w-full h-full" />
                     </div>
@@ -344,20 +350,45 @@ export default function Home() {
                   {item === 1 ? (
                     <>
                       <span className="text-sm font-mono text-blue-500">01 / LARAVEL + INERTIA + TYPESCRIPT + MYSQL</span>
-                      <h3 className="text-4xl font-light text-white">CRM pour les Micro-entreprise</h3>
-                      <button className="flex items-center gap-2 text-sm font-bold uppercase border-b border-blue-500 pb-2">
-                        <span className="inline-block h-2 w-2 rounded-full bg-red-500" aria-hidden="true" />
-                        En face de Développement
-                      </button>
+                      <h3 className="text-4xl font-light text-white">ERP pour les Micro-entreprise</h3>
+                      <div className="flex flex-col items-start gap-4">
+                        <a href="https://zenstack.fr" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold uppercase border-b border-blue-500 pb-2">
+                          <span className="inline-block h-2 w-2 rounded-full bg-green-500" aria-hidden="true" />
+                          Explorer <ArrowRight size={16} />
+                        </a>
+                        <p className="text-white/70 text-base leading-relaxed max-w-xl">
+                          Plateforme centralisée combinant CRM, facturation électronique (intégration PDP), synchronisation bancaire et comptabilité.
+                        </p>
+                        <span className="text-sm font-medium text-white/90 italic">En face de Développement</span>
+                      </div>
+                    </>
+                  ) : item === 2 ? (
+                    <>
+                      <span className="text-sm font-mono text-blue-500">02 / APPLICATION LOCALE</span>
+                      <h3 className="text-4xl font-light text-white">Pomodoro</h3>
+                      <div className="flex flex-col items-start gap-4">
+                        <a href="https://github.com/Aharon-zerbib/Pomodoro" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold uppercase border-b border-blue-500 pb-2">
+                          <span className="inline-block h-2 w-2 rounded-full bg-green-500" aria-hidden="true" />
+                          Explorer <ArrowRight size={16} />
+                        </a>
+                        <p className="text-white/70 text-base leading-relaxed max-w-xl">
+                          Logiciel de bureau fonctionnant en local. La technique Pomodoro est une méthode de gestion du temps qui utilise un minuteur pour diviser le travail en intervalles (généralement de 25 minutes) séparés par de courtes pauses.
+                        </p>
+                      </div>
                     </>
                   ) : (
                     <>
-                      <span className="text-sm font-mono text-blue-500">02 / REACT </span>
+                      <span className="text-sm font-mono text-blue-500">03 / REACT </span>
                       <h3 className="text-4xl font-light text-white">Nina Carducci</h3>
-                      <button onClick={handleNinaOpen} className="inline-flex items-center gap-2 text-sm font-bold uppercase border-b border-blue-500 pb-2">
-                        <span className="inline-block h-2 w-2 rounded-full bg-green-500" aria-hidden="true" />
-                        Explorer <ArrowRight size={16} />
-                      </button>
+                      <div className="flex flex-col items-start gap-4">
+                        <button onClick={handleNinaOpen} className="inline-flex items-center gap-2 text-sm font-bold uppercase border-b border-blue-500 pb-2">
+                          <span className="inline-block h-2 w-2 rounded-full bg-green-500" aria-hidden="true" />
+                          Explorer <ArrowRight size={16} />
+                        </button>
+                        <p className="text-white/70 text-base leading-relaxed max-w-xl">
+                          Portfolio.
+                        </p>
+                      </div>
                     </>
                   )}
                 </div>
